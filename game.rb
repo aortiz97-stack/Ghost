@@ -46,18 +46,16 @@ class Game
         valid = false
         input = ""
 
-        while !valid
-            input = player.guess
-            if valid_play?(input)
-                valid = true
-            else
-                player.alert_invalid_guess
+        
+        input = player.guess
+        if valid_play?(input)
+            valid = true
+            @fragment += input
+        else
+            player.alert_invalid_guess
                 
-                #valid = true
-            end
         end
 
-        @fragment += input
     end
 
     def lost_point(player)
