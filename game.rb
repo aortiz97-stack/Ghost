@@ -48,9 +48,7 @@ class Game
             @fragment += input
         else
             player.alert_invalid_guess
-            lost_point(player)
-            lost_round(player)
-            @fragment = "" 
+            loser_reset(player) 
         end
 
     end
@@ -86,6 +84,12 @@ class Game
         end
     end
 
+    def loser_reset(player)
+        lost_point(player)
+        lost_round(player)
+        @fragment = ""
+    end
+
     def play_round
         self.display_scores
         while !@dictionary.include?(@fragment)
@@ -93,9 +97,7 @@ class Game
             self.next_player!    
         end
 
-        lost_point(@previous_player)
-        lost_round(@previous_player)
-        @fragment = ""
+        loser_reset(@previous_player)
     end
 
     def run 
