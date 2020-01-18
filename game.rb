@@ -43,17 +43,14 @@ class Game
     end
 
     def take_turn(player)
-        valid = false
-        input = ""
-
-        
         input = player.guess
         if valid_play?(input)
-            valid = true
             @fragment += input
         else
             player.alert_invalid_guess
-                
+            lost_point(player)
+            lost_round(player)
+            @fragment = "" 
         end
 
     end
